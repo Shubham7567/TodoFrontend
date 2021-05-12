@@ -1,0 +1,36 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-lg-8 col-md-8 col-sm-12">
+    <div class="wrapper">
+      <div class="card card-body shadow table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Done</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{task.id}}</td>
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            <td><input type="checkbox" [checked]="task.done" (click)="task_done(task.id)"></td>
+            <td>
+              <button class="btn btn-warning" (click)="editTask(task.id)"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-danger ml-2" (click)="deleteTask(task.id)"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12">
+    <app-create (refreshTableForMe)="triggerEmitterToList($event)" [task]="task"></app-create>
+  </div>
+</div>
+</div>
